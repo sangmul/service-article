@@ -11,7 +11,7 @@ Silakan request file environment ke PM melalui:
 
 ---
 
-### 2. Setup File `.env`
+### 2. Setup File `.env` dan  `certs/ca.pem `
 
 Buat file `.env` di root project, lalu isi dengan parameter berikut:
 
@@ -23,6 +23,15 @@ DB_PORT=
 DB_NAME=
 DB_TLS=
 ```
+
+Buat file `ca.pem` di folder certs
+
+```
+-----BEGIN CERTIFICATE-----
+XXXXX
+-----END CERTIFICATE-----
+```
+
 
 Isi value sesuai dengan yang diberikan oleh PM.
 
