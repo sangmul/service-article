@@ -86,16 +86,6 @@ func (h *PostHandler) Create(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Post created"})
 }
 
-// func (h *PostHandler) GetAll(c *gin.Context) {
-// 	posts, err := h.service.GetAll()
-// 	if err != nil {
-// 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-// 		return
-// 	}
-
-// 	c.JSON(http.StatusOK, posts)
-// }
-
 func (h *PostHandler) GetAll(c *gin.Context) {
     limitParam := c.Query("limit")
     offsetParam := c.Query("offset")
@@ -127,6 +117,7 @@ func (h *PostHandler) GetAll(c *gin.Context) {
     var result []gin.H
     for _, p := range posts {
         result = append(result, gin.H{
+			"id":		p.ID,
             "title":    p.Title,
             "content":  p.Content,
             "category": p.Category,
@@ -152,8 +143,8 @@ func (h *PostHandler) GetByID(c *gin.Context) {
 		return
 	}
 
-	// sesuai format yang diminta (tanpa id, created_date, dll)
 	c.JSON(http.StatusOK, gin.H{
+		"id":		post.ID,
 		"title":    post.Title,
 		"content":  post.Content,
 		"category": post.Category,
@@ -192,7 +183,6 @@ func (h *PostHandler) Update(c *gin.Context) {
 		return
 	}
 
-	// response kosong sesuai requirement
 	c.JSON(http.StatusOK, gin.H{})
 }
 
